@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 //Menu es una nueva actividad empty
                 Intent ven = new Intent(this, menu_usuario.class);
                 startActivity(ven);
+                Toast.makeText(this,"Bienvenido "+usua,Toast.LENGTH_SHORT).show();
                 //limpiamos las las cajas de texto
                 usu1.setText("");
                 passw.setText("");

@@ -1,6 +1,9 @@
 package com.example.abrahamxsaboter.minialmacen;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,18 +16,34 @@ public class actualizar_datos3 extends AppCompatActivity {
 
     private TextView correo;
     private String datoCorreo;
-
+    private TextInputEditText pass1,pass2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actualizar_datos3);
+
     }
     public void ActualizarDatosCuenta(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        Toast.makeText(getBaseContext(),"Contraseña actualizada con exito", Toast.LENGTH_LONG).show();
-        finish();
+        SqLiteHelper admin=new SqLiteHelper(this,"almacen",null,1);
+        SQLiteDatabase db=admin.getWritableDatabase();
+        String contra = pass1.getText().toString();
+        String contra2 = pass2.getText().toString();
+        Bundle parametros = getIntent().getExtras();
+        String id = parametros.getString("id");
+
+        if(contra.equals(contra2) == true){
+                    Cursor fila;
+                    fila=db.rawQuery("UPDATE usuario_almacen SET contrasena='"+contra+"' WHERE id='"+id+"';", null);
+                    Toast.makeText(this,"Contraseña actualizada con exito.",Toast.LENGTH_SHORT).show();
+                    Intent evento = new Intent(this,MainActivity.class);
+                    startActivity(evento);
+        }else if (contra.equals(contra2) == false){
+            Toast.makeText(this,"Las contraseñas no son iguales.",Toast.LENGTH_SHORT).show();
+            Intent evento = new Intent(this,actualizar_datos3.class);
+            evento.putExtra("id",id);
+            startActivity(evento);
+        }
     }
 
     public void CancelarActu(View v) {

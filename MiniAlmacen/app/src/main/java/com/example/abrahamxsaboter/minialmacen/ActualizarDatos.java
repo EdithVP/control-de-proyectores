@@ -1,6 +1,8 @@
 package com.example.abrahamxsaboter.minialmacen;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,26 +25,39 @@ public class ActualizarDatos extends AppCompatActivity {
         //Aplica el botón atras en el ActionBar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        //Buscamos la id del TextEdit
+        correo = (TextInputEditText) findViewById(R.id.id_app_correo);
 
-        //Enviamos los datos a traves de un TextEdit
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            datoCorreo = bundle.getString("correo");
-            correo = (TextInputEditText) findViewById(R.id.id_app_correo);
-            correo.setText(datoCorreo);
-        }
 
     }
     public void ActualizarDatosCuenta(View v) {
 
-        //Buscamos la id del TextEdit
-        correo = (TextInputEditText) findViewById(R.id.id_app_correo);
-        Intent intent = new Intent(this, actualizar_datos2.class);
-        //Obtemos los datos
-        intent.putExtra("correo", correo.getText().toString());
-        Toast.makeText(getBaseContext(),"Enviando código de seguridad al su correo...", Toast.LENGTH_LONG).show();
-        startActivity(intent);
-        finish();
+        SqLiteHelper admin=new SqLiteHelper(this,"almacen",null,1);
+        SQLiteDatabase db=admin.getWritableDatabase();
+        String email = correo.getText().toString();
+
+        Cursor fila;
+        fila=db.rawQuery("SELECT id,correo FROM usuario_almacen WHERE correo='" +
+                email + "';", null);
+        //preguntamos si el cursor tiene algun valor almacenado
+        if(fila.moveToFirst()==true) {
+            //capturamos los valores del cursos y lo almacenamos en variable
+            String id = fila.getString(0);
+            String correo1 = fila.getString(0);
+
+            //preguntamos si los datos ingresados son iguales
+            if (email.equals(correo1)) {
+                //si son iguales entonces vamos a otra ventana
+                //Menu es una nueva actividad empty
+                Intent ven = new Intent(this, actualizar_datos3.class);
+                ven.putExtra("id",id);
+                startActivity(ven);
+                //limpiamos las las cajas de texto
+                correo.setText("");
+                Toast.makeText(this,"Prosigamos ",Toast.LENGTH_SHORT).show();
+
+            }
+        }
     }
 
     public void CancelarActu(View v) {
