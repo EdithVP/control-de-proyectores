@@ -65,35 +65,7 @@ public class DataCurrentSql {
         return alma1;
     }
 
-    public ArrayList<UsuariosCon> GetUsuarios(String user, String pass){
-        ArrayList<UsuariosCon> usuarios = new ArrayList<UsuariosCon>();
-        String query= "SELECT usuario,contrasena FROM usuario_almacen WHERE usuario='" +
-                user + "'AND contrasena='" + pass + "';";
 
-        Cursor cursor = database.rawQuery(query,null);
-        cursor.moveToFirst();
-        while (!cursor.moveToFirst()){
-            UsuariosCon usuariosCon = cursorToUser(cursor);
-            usuarios.add(usuariosCon);
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return usuarios;
-    }
-
-    private UsuariosCon cursorToUser(Cursor cursor) {
-        UsuariosCon alma1 = new UsuariosCon(
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getString(3),
-                cursor.getString(4),
-                cursor.getString(5),
-                cursor.getString(6),
-                cursor.getString(7));
-        alma1.setId(cursor.getLong(0));
-
-        return alma1;
-    }
 
 
 
