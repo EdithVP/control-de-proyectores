@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.abrahamxsaboter.minialmacen.actualizar_datos3">
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/titulo_almacen"
+            android:text="Recuperación de cuenta"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textAlignment="center"
+            android:layout_weight="1" />
+
+        <!--Correo-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--Icono correo-->
+            <ImageView
+                android:id="@+id/icon_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:src="@drawable/ic_pass" />
+            <!--Correo-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nueva contraseña"
+                app:counterEnabled="true"
+                app:counterMaxLength="15">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/id_app_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="15"
+                    android:inputType="textAutoComplete"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <!--Correo-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--Icono correo-->
+            <ImageView
+                android:id="@+id/icon_pass2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:src="@drawable/ic_pass" />
+            <!--Correo-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Confirmar nueva contraseña"
+                app:counterEnabled="true"
+                app:counterMaxLength="15">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/id_app_pass2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="15"
+                    android:inputType="textAutoComplete"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+
+        <!--Botones-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center|top">
+            <!--Botones-->
+            <Button
+                android:layout_marginTop="25dp"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_actualizar"
+                android:theme="@style/boton"
+                android:onClick="ActualizarDatosCuenta"
+                android:text="Actualizar" />
+            <Button
+                android:layout_marginTop="25dp"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_cancelar"
+                android:theme="@style/boton"
+                android:onClick="CancelarActu"
+                android:text="Cancelar" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
