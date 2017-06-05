@@ -86,6 +86,7 @@
                 android:value=".menu_usuario" />
         </activity>
         <activity android:name=".info_Alamacen"></activity>
+
         <activity android:name=".actualizar_datos3"></activity>
     </application>
 

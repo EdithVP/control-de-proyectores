@@ -22,6 +22,8 @@ public class actualizar_datos3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actualizar_datos3);
+        pass1 = (TextInputEditText)findViewById(R.id.id_app_pass);
+        pass2 = (TextInputEditText)findViewById(R.id.id_app_pass2);
 
     }
     public void ActualizarDatosCuenta(View v) {
@@ -34,7 +36,7 @@ public class actualizar_datos3 extends AppCompatActivity {
 
         if(contra.equals(contra2) == true){
                     Cursor fila;
-                    fila=db.rawQuery("UPDATE usuario_almacen SET contrasena='"+contra+"' WHERE id='"+id+"';", null);
+                    fila=db.rawQuery("UPDATE usuario_almacen SET contrasena='"+contra+"' WHERE id_user='"+id+"';", null);
                     Toast.makeText(this,"Contraseña actualizada con exito.",Toast.LENGTH_SHORT).show();
                     Intent evento = new Intent(this,MainActivity.class);
                     startActivity(evento);

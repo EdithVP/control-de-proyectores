@@ -37,13 +37,13 @@ public class ActualizarDatos extends AppCompatActivity {
         String email = correo.getText().toString();
 
         Cursor fila;
-        fila=db.rawQuery("SELECT id,correo FROM usuario_almacen WHERE correo='" +
+        fila=db.rawQuery("SELECT id_user,correo FROM usuario_almacen WHERE correo='" +
                 email + "';", null);
         //preguntamos si el cursor tiene algun valor almacenado
         if(fila.moveToFirst()==true) {
             //capturamos los valores del cursos y lo almacenamos en variable
             String id = fila.getString(0);
-            String correo1 = fila.getString(0);
+            String correo1 = fila.getString(1);
 
             //preguntamos si los datos ingresados son iguales
             if (email.equals(correo1)) {
